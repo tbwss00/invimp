@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversiones Inpelka C.A. | Más que Construcciones Soluciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --rojo: #FF0000;
+            --naranja: #FF6B00;
+            --verde: #4CAF50;
+            --blanco: #FFFFFF;
+            --gris-claro: #F5F5F5;
+            --gris: #757575;
+            --negro: #212121;
+            --gradient: linear-gradient(135deg, #FF0000 0%, #FF6B00 50%, #4CAF50 100%);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--negro);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--blanco);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.4rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 65px; object-fit: contain; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--negro);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover { color: var(--rojo); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--rojo);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-6px); }
+
+        /* ===== HERO CON TRIÁNGULO CORREGIDO ===== */
+        .hero {
+            margin-top: 75px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(135deg, rgba(0, 100, 200, 0.3) 0%, rgba(0, 50, 100, 0.4) 50%, rgba(0, 30, 60, 0.6) 100%),
+                url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            z-index: 1;
+        }
+
+        .hero-sky-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(200,230,255,0.1) 0%, transparent 40%),
+                linear-gradient(180deg, rgba(100,180,255,0.2) 0%, rgba(0,50,100,0.3) 100%);
+            z-index: 2;
+            animation: skyFloat 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes skyFloat {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.02) translate(-5px, -5px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        /* ===== TRIÁNGULO CON BORDE UNIFORME Y LOGO POSICIONADO ===== */
+        .hero-logo-triangle {
+            width: 320px;
+            height: 320px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+            animation: floatTriangle 4s ease-in-out infinite;
+        }
+
+        @keyframes floatTriangle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Borde exterior blanco */
+        .hero-logo-triangle::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--blanco);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            z-index: 1;
+        }
+
+        /* Fondo interior con borde uniforme de 6px en los 3 lados */
+        .hero-logo-triangle::after {
+            content: '';
+            position: absolute;
+            inset: 6px; /* Grosor idéntico en costados e inferior */
+            background: 
+                linear-gradient(180deg, rgba(0, 80, 160, 0.35) 0%, rgba(0, 120, 200, 0.45) 35%, rgba(34, 139, 34, 0.6) 100%),
+                url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=400&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center bottom; /* Muestra la grama en la parte inferior */
+            background-blend-mode: overlay;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            z-index: 2;
+        }
+
+        /* Cuadrícula de paneles */
+        .hero-logo-triangle .solar-grid {
+            position: absolute;
+            inset: 6px;
+            z-index: 3;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(255,255,255,0.08) 14px, rgba(255,255,255,0.08) 15px),
+                repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(255,255,255,0.08) 14px, rgba(255,255,255,0.08) 15px);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            pointer-events: none;
+        }
+
+        /* Contenedor del logo: posicionado en la zona inferior (grama) */
+        .hero-logo-inner {
+            position: relative;
+            z-index: 4;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 95px; /* Empuja el logo hacia la zona de grama */
+        }
+
+        .logo-container {
+            width: 145px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            max-width: 125px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.6));
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .cta-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary { background: var(--rojo); color: white; }
+        .btn-primary:hover { background: #cc0000; transform: translateY(-2px); }
+        .btn-secondary { background: white; color: var(--rojo); }
+        .btn-secondary:hover { background: var(--verde); color: white; transform: translateY(-2px); }
+
+        /* ===== BOTÓN FLOTANTE DE WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+            background: #128C7E;
+        }
+
+        .whatsapp-float i { transition: transform 0.3s ease; }
+        .whatsapp-float:hover i { transform: rotate(15deg); }
+
+        .whatsapp-float::before {
+            content: '¡Contáctanos por WhatsApp!';
+            position: absolute;
+            right: 75px;
+            background: white;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .whatsapp-float::after {
+            content: '';
+            position: absolute;
+            right: 65px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .whatsapp-float:hover::before,
+        .whatsapp-float:hover::after { opacity: 1; }
+
+        @keyframes whatsappPulse {
+            0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+            50% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 15px rgba(37, 211, 102, 0.15); }
+            100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+        }
+
+        /* ===== RESTO DE ESTILOS (INCHANGÉS) ===== */
+        section { padding: 4rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--rojo); margin-bottom: 0.5rem; }
+        .section-subtitle { text-align: center; color: var(--verde); font-style: italic; margin-bottom: 2.5rem; }
+
+        .nosotros { background: linear-gradient(135deg, white, #f0f0f0); }
+        .nosotros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .nosotros-text p { line-height: 1.9; color: #424242; margin-bottom: 1rem; }
+        .nosotros-img { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .nosotros-img img { width: 100%; display: block; }
+        .vm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .vm-card { padding: 2.5rem; border-radius: 20px; color: white; position: relative; overflow: hidden; }
+        .vm-card.vision { background: linear-gradient(135deg, var(--rojo), #FF4444); }
+        .vm-card.mision { background: linear-gradient(135deg, var(--verde), #388E3C); }
+        .vm-card i { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.9; }
+        .vm-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .vm-card p { line-height: 1.8; font-size: 0.95rem; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .stat-box { text-align: center; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-bottom: 4px solid var(--rojo); }
+        .stat-box .num { font-size: 2.5rem; font-weight: bold; color: var(--rojo); }
+        .stat-box .label { color: var(--gris); font-size: 0.9rem; }
+
+        .servicios { background: white; }
+        .servicios-dropdown-list { max-width: 900px; margin: 0 auto; }
+        .servicio-dropdown { margin-bottom: 1rem; border-radius: 15px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; transition: box-shadow 0.3s; }
+        .servicio-dropdown:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+        .servicio-dropdown-header { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; background: white; cursor: pointer; transition: background 0.3s; user-select: none; }
+        .servicio-dropdown-header:hover { background: #fff5f5; }
+        .servicio-dropdown.active .servicio-dropdown-header { background: linear-gradient(135deg, rgba(255,0,0,0.05), rgba(76,175,80,0.05)); }
+        .servicio-num { width: 45px; height: 45px; background: var(--gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; flex-shrink: 0; }
+        .servicio-dropdown-title { flex: 1; font-size: 1.1rem; font-weight: 700; color: var(--negro); }
+        .servicio-dropdown-arrow { font-size: 1.2rem; color: var(--rojo); transition: transform 0.4s ease; }
+        .servicio-dropdown.active .servicio-dropdown-arrow { transform: rotate(180deg); }
+        .servicio-dropdown-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .servicio-dropdown.active .servicio-dropdown-body { max-height: 800px; }
+        .servicio-dropdown-content { padding: 1.5rem; border-top: 1px solid #e0e0e0; background: #fafafa; }
+        .servicio-dropdown-content p { color: var(--gris); line-height: 1.8; margin-bottom: 1.5rem; }
+        .servicio-dropdown-content .service-label { display: inline-block; padding: 0.3rem 1rem; background: var(--gradient); color: white; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 1rem; }
+        .servicio-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .servicio-gallery-item { position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; box-shadow: 0 3px 15px rgba(0,0,0,0.1); transition: transform 0.3s; aspect-ratio: 4/3; }
+        .servicio-gallery-item:hover { transform: scale(1.05); }
+        .servicio-gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .servicio-gallery-item .zoom-icon { position: absolute; bottom: 10px; right: 10px; background: var(--rojo); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; }
+        .servicio-gallery-item:hover .zoom-icon { opacity: 1; }
+
+        .image-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; padding: 2rem; }
+        .image-modal.show { display: flex; }
+        .image-modal-content { position: relative; max-width: 90%; max-height: 90vh; }
+        .image-modal-content img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 10px; }
+        .image-modal-close { position: absolute; top: -50px; right: 0; width: 45px; height: 45px; background: var(--rojo); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: transform 0.3s; }
+        .image-modal-close:hover { transform: rotate(90deg); }
+        .image-modal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: rgba(255,0,0,0.8); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: background 0.3s; }
+        .image-modal-nav:hover { background: rgba(255,0,0,1); }
+        .image-modal-nav.prev { left: -70px; }
+        .image-modal-nav.next { right: -70px; }
+        .image-modal-counter { text-align: center; color: white; margin-top: 1rem; font-size: 0.9rem; }
+
+        .proyectos { background: linear-gradient(135deg, #f5f5f5, white); }
+        .proyectos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .proyecto-card { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); cursor: pointer; height: 350px; }
+        .proyecto-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .proyecto-card:hover img { transform: scale(1.1); }
+        .proyecto-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: white; padding: 2rem; }
+        .proyecto-overlay h3 { color: var(--rojo); font-size: 1.3rem; }
+        .proyecto-overlay p { font-size: 0.9rem; opacity: 0.9; }
+
+        .portafolio { background: white; }
+        .portafolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .portafolio-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); height: 300px; }
+        .portafolio-item img { width: 100%; height: 100%; object-fit: cover; }
+        .portafolio-info { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(255,0,0,0.95), transparent); color: white; padding: 1.5rem; }
+
+        .proveedores { background: linear-gradient(135deg, var(--verde), #2E7D32); color: white; position: relative; }
+        .proveedores .section-title { color: white; }
+        .proveedores .section-title::after { background: var(--rojo); }
+        .proveedores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+        .proveedor-card { background: white; padding: 2rem; border-radius: 20px; text-align: center; transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .proveedor-card:hover { transform: translateY(-8px); }
+        .proveedor-card h3 { color: var(--rojo); margin: 1rem 0 0.5rem; }
+        .proveedor-card p { color: var(--gris); font-size: 0.9rem; }
+        .proveedor-icon { width: 80px; height: 80px; margin: 0 auto; background: #f5f5f5; border-radius: 15px; display: flex; align-items: center; justify-content: center; }
+        .proveedor-icon i { font-size: 2.5rem; color: var(--naranja); }
+
+        .contacto { background: linear-gradient(135deg, white, #f5f5f5, white); position: relative; }
+        .contacto::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--gradient); }
+        .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contacto-info { display: flex; flex-direction: column; gap: 1.2rem; }
+        .contacto-item { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.2rem; background: white; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); border-left: 4px solid var(--rojo); transition: all 0.3s; }
+        .contacto-item:hover { transform: translateX(8px); border-left-color: var(--verde); }
+        .contacto-icon { width: 50px; height: 50px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; flex-shrink: 0; }
+        .contacto-text h3 { color: var(--rojo); font-size: 1rem; margin-bottom: 0.3rem; }
+        .contacto-text p, .contacto-text a { color: var(--gris); text-decoration: none; }
+        .contacto-text a:hover { color: var(--verde); }
+        .contacto-form { background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--rojo); font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.9rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-family: inherit; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--verde); }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .btn-submit { width: 100%; padding: 1rem; background: var(--gradient); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s; }
+        .btn-submit:hover { transform: translateY(-2px); }
+
+        footer { background: linear-gradient(135deg, #1a1a1a, #333); color: white; padding: 3rem 2rem 1rem; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--rojo); margin-bottom: 1rem; font-size: 1.1rem; }
+        .footer-section p, .footer-section a { color: #BDBDBD; text-decoration: none; line-height: 2; font-size: 0.9rem; }
+        .footer-section a:hover { color: var(--verde); }
+        .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+        .social-links a { width: 45px; height: 45px; background: linear-gradient(135deg, var(--naranja), var(--verde)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; transition: transform 0.3s; }
+        .social-links a:hover { transform: translateY(-5px) rotate(360deg); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #9E9E9E; font-size: 0.85rem; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: white; width: 100%; text-align: center; padding: 2rem 0; transition: left 0.3s; }
+            .nav-menu.active { left: 0; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2.5rem; }
+            .nosotros-grid, .contacto-grid { grid-template-columns: 1fr; }
+            .vm-cards { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .proyectos-grid { grid-template-columns: 1fr; }
+            .image-modal-nav.prev { left: 10px; }
+            .image-modal-nav.next { right: 10px; }
+            
+            .hero-logo-triangle { width: 240px; height: 240px; }
+            .hero-logo-triangle::after { inset: 5px; }
+            .hero-logo-triangle .solar-grid { inset: 5px; }
+            .hero-logo-inner { padding-bottom: 75px; }
+            .logo-container { width: 120px; padding: 8px; }
+            .logo-container img { max-width: 100px; }
+            
+            .whatsapp-float { width: 55px; height: 55px; font-size: 1.8rem; bottom: 20px; right: 20px; }
+            .whatsapp-float::before, .whatsapp-float::after { display: none; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; justify-content: center; }
+            .stats { grid-template-columns: 1fr 1fr; }
+            section { padding: 3rem 1rem; }
+            .servicio-gallery { grid-template-columns: 1fr 1fr; }
+            
+            .hero-logo-triangle { width: 200px; height: 200px; }
+            .hero-logo-triangle::after { inset: 4px; }
+            .hero-logo-triangle .solar-grid { inset: 4px; }
+            .hero-logo-inner { padding-bottom: 65px; }
+            .logo-container { width: 100px; padding: 6px; }
+            .logo-container img { max-width: 85px; }
+            
+            .whatsapp-float { width: 50px; height: 50px; font-size: 1.6rem; bottom: 15px; right: 15px; }
+
+        .form-message {
+        padding: 12px 15px; margin-top: 15px; border-radius: 6px;
+        text-align: center; font-weight: 500; font-size: 0.95rem; display: none;
+         }
+        .form-message.success { background: #4CAF50; color: #fff; border-left: 4px solid #2E7D32; }
+        .form-message.error   { background: #f44336; color: #fff; border-left: 4px solid #d32f2f; }
+        }
+
+        /* Mensajes del formulario */
+        .form-message {
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .form-message.success {
+            background-color: #4CAF50;
+            color: white;
+            border-left: 4px solid #2E7D32;
+        }
+        .form-message.error {
+            background-color: #f44336;
+            color: white;
+            border-left: 4px solid #d32f2f;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos de validación */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #d32f2f;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        /* Campo con error */
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #f44336;
+        }
+
+        .form-group.error label {
+            color: #f44336;
+        }
+
+        /* Campo válido */
+        .form-group.success input,
+        .form-group.success select,
+        .form-group.success textarea {
+            border-color: #4CAF50;
+        }
+
+        /* Mensaje de error */
+        .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* Mensaje del formulario */
+        .form-message {
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .form-message.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .form-message.error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #1b5e20;
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-message { display:none; }
+        .form-message.success { background:#4CAF50; color:white; display:block !important; }
+        .form-message.error { background:#f44336; color:white; display:block !important; }
+
+        /* Validación de formulario */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #d32f2f;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        /* Campo con error */
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #f44336;
+            background-color: #fff5f5;
+        }
+
+        .form-group.error label {
+            color: #f44336;
+        }
+
+        /* Campo válido */
+        .form-group.success input,
+        .form-group.success select,
+        .form-group.success textarea {
+            border-color: #4CAF50;
+        }
+
+        /* Mensajes de error */
+        .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* Botón de envío */
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Mensaje general del formulario */
+        .form-message {
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .form-message.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .form-message.error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Estilos CSS para el slider */
+        
+        .aliadas-section {
+            padding: 80px 0;
+            background: #ffffff; /* Fondo blanco */
+        }
+
+        .aliadas-section .section-title {
+            color: #FF4444; /* Color oscuro como otras secciones */
+        }
+
+        .aliadas-section .section-subtitle {
+            color: #000000; /* Color primario */
+        }
+
+        .aliadas-slider {
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .aliadas-slider-container {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .aliadas-slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .aliado-card {
+            flex: 1;
+            max-width: 350px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .aliado-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .aliado-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 10px; /* Cuadrado con bordes ligeramente redondeados */
+            overflow: hidden;
+            border: 3px solid #667eea;
+            padding: 10px;
+        }
+
+        /* Excepción para Eco Home Holding - mantiene forma original */
+        .aliado-logo.eco-home {
+            border-radius: 0;
+            background: transparent;
+            border: none;
+        }
+
+        /* Excepción para SEI Energy - mantiene forma circular */
+        .aliado-logo.sei-energy {
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #667eea;
+        }
+
+        /* SOFITASA - cuadrado */
+        .aliado-logo.sofitasa {
+            border-radius: 10px;
+            background: white;
+            border: 3px solid #1e5a9e;
+        }
+
+        .aliado-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Para que se vea completo el logo */
+        }
+
+        .aliado-card h3 {
+            color: #2c3e50; /* Color oscuro consistente */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .aliado-card p {
+            color: #666; /* Color gris consistente */
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .slider-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-control:hover {
+            background: #764ba2;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .slider-control.prev {
+            left: 10px;
+        }
+
+        .slider-control.next {
+            right: 10px;
+        }
+
+        .slider-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #667eea;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .aliadas-slide {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .aliado-card {
+                max-width: 100%;
+                width: 90%;
+            }
+            
+            .slider-control {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+
+
+
+        /* ========================================== */
+        /* CSS PARA PORTAFOLIO Y MODALES              */
+        /* ========================================== */
+        
+        /* Sección Portafolio */
+        .portafolio-section {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #dc3545;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #dc3545;
+            margin-bottom: 40px;
+        }
+
+        /* Filtros */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            border: 2px solid #dc3545;
+            background: transparent;
+            color: #dc3545;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Grid de Portafolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            cursor: pointer;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .portfolio-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(220, 53, 69, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-info {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .portfolio-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-info p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .view-project {
+            display: inline-block;
+            padding: 8px 20px;
+            background: white;
+            color: #dc3545;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ========================================== */
+        /* ESTILOS DE MODALES CUSTOM (NO BOOTSTRAP)   */
+        /* ========================================== */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        .custom-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1;
+        }
+
+        .custom-modal-content {
+            position: relative;
+            z-index: 2;
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .custom-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dc3545;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .custom-modal-close:hover {
+            background: #c82333;
+            transform: rotate(90deg);
+        }
+
+        .modal-project-header {
+            background: linear-gradient(135deg, #ff6b00 0%, #4CAF50 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-project-header h2 {
+            font-size: 1.8rem;
+            margin: 0 0 5px 0;
+        }
+
+        .modal-project-header p {
+            font-size: 1rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Carrusel */
+        .modal-carousel {
+            position: relative;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .carousel-slide {
+            display: none;
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+
+        .carousel-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .carousel-text {
+            padding: 20px;
+        }
+
+        .carousel-text h3 {
+            color: #dc3545;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel-text p,
+        .carousel-text li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .carousel-text strong {
+            color: #dc3545;
+        }
+
+        .carousel-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .carousel-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #dc3545;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .carousel-btn:hover {
+            background: #c82333;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #dc3545;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Badges */
+        .modal-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px 40px 30px;
+            background: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #ff6b00 0%, #4CAF50 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-image img {
+                height: 200px;
+            }
+            
+            .modal-project-header {
+                padding: 20px;
+            }
+            
+            .modal-project-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .carousel-text {
+                padding: 10px;
+            }
+            
+            .modal-badges {
+                padding: 15px 20px 20px;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Agregar este estilo adicional para el año */
+        .year-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-left: 5px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="img/Logo_InvInp.png" alt="Inversiones Inpelka C.A.">
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#aliadas">Empresas Aliadas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-sky-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="hero-logo-triangle">
+                <div class="solar-grid"></div>
+                <div class="hero-logo-inner">
+                    <div class="logo-container">
+                        <img src="img/Logo_InvInp.png" alt="Inversiones Inpelka C.A.">
+                    </div>
+                </div>
+            </div>
+            
+            <span style="color: #FFA500;"><h1>INPELKA</h1></span>
+            <p>MÁS QUE CONSTRUCCIONES SOLUCIONES</p>
+            <p style="margin-top: 1.5rem; font-size: 1.1rem; opacity: 0.9;">Empresa líder en desarrollo de infraestructura, energía renovable y construcción sostenible. Transformamos visiones en realidades con tecnología de punta.</p>
+            <div class="cta-buttons">
+                <a href="#servicios" class="btn btn-primary"><i class="fas fa-cogs"></i> Servicios</a>
+                <a href="#contacto" class="btn btn-secondary"><i class="fas fa-envelope"></i> Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="nosotros" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Nosotros</h2>
+            <div class="nosotros-grid">
+                <div class="nosotros-text fade-up">
+                    <p>En <strong>Inversiones Inpelka C.A.</strong> fundada en <strong>2002</strong>, nos especializamos en la ejecución de obras de ingeniería civil para los sectores público y privado.</p>
+                    <p>Nuestra experiencia abarca obras hidráulicas, eléctricas, viales, edificaciones, energía solar, proyectos, maquinaria, avalúos y la instalación de equipos de seguridad electrónicos con tecnología de vanguardia.</p>
+                </div>
+                <div class="nosotros-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=700" alt="Equipo Inpelka">
+                </div>
+            </div>
+            <div class="vm-cards">
+                <div class="vm-card vision fade-up">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visión</h3>
+                    <p>Ofrecer servicios de calidad y eficiencia en construcción, ingeniería, arquitectura, instalaciones y mantenimiento. Optimizamos recursos para reducir costos sin sacrificar excelencia.</p>
+                </div>
+                <div class="vm-card mision fade-up">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Misión</h3>
+                    <p>Ser la empresa constructora líder a nivel regional y nacional, destacándonos por responsabilidad, eficiencia y calidad. Fomentamos un equipo motivado e innovador.</p>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-box fade-up"><div class="num">24+</div><div class="label">Años de Experiencia</div></div>
+                <div class="stat-box fade-up"><div class="num">20+</div><div class="label">Proyectos</div></div>
+                <div class="stat-box fade-up"><div class="num">20+</div><div class="label">Clientes</div></div>
+                <div class="stat-box fade-up"><div class="num">10+</div><div class="label">Alianzas</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="servicios" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Infraestructura que transforma</p>
+
+            <div class="servicios-dropdown-list">
+                <div class="servicio-dropdown fade-up">
+                    <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
+                        <div class="servicio-num">01</div>
+                        <div class="servicio-dropdown-title">Construcción de Obras Civiles Integrales</div>
+                        <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="servicio-dropdown-body">
+                        <div class="servicio-dropdown-content">
+                            <span class="service-label">INFRAESTRUCTURA</span>
+                            <p>Desarrollo de proyectos de infraestructura hidráulica, eléctrica, vial y de edificaciones, con enfoque en sostenibilidad y eficiencia. Ejecutamos obras de gran envergadura para los sectores público y privado.</p>
+                            <div class="servicio-gallery">
+                                <div class="servicio-gallery-item" onclick="openImageModal('obras-civiles', 0)">
+                                    <img src="img/ServObrasCivilesIntegrales_03.jpeg" alt="Obras civiles" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                                <div class="servicio-gallery-item" onclick="openImageModal('obras-civiles', 1)">
+                                    <img src="img/ServObrasCivilesIntegrales_00.jpeg" alt="Obras civiles" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="servicio-dropdown fade-up">
+                    <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
+                        <div class="servicio-num">02</div>
+                        <div class="servicio-dropdown-title">Proyectos de Infraestructura Hidráulica</div>
+                        <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="servicio-dropdown-body">
+                        <div class="servicio-dropdown-content">
+                            <span class="service-label">HIDRÁULICA</span>
+                            <p>Soluciones integrales desde sistemas de abastecimiento y distribución de agua hasta obras de drenaje y tratamiento, garantizando eficiencia y sostenibilidad en cada proyecto.</p>
+                            <div class="servicio-gallery">
+                                <div class="servicio-gallery-item" onclick="openImageModal('hidraulica', 0)">
+                                    <img src="img/HidraulicaLaGrita_00.jpeg" alt="Hidráulica" onerror="this.src='https://images.unsplash.com/photo-1590644365607-1c5a0e1e030a?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                                <div class="servicio-gallery-item" onclick="openImageModal('hidraulica', 0)">
+                                    <img src="img/HidraulicaLaGrita_01.jpeg" alt="Hidráulica" onerror="this.src='https://images.unsplash.com/photo-1590644365607-1c5a0e1e030a?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+                <div class="servicio-dropdown fade-up">
+                    <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
+                        <div class="servicio-num">03</div>
+                        <div class="servicio-dropdown-title">Energía Solar Fotovoltaica</div>
+                        <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="servicio-dropdown-body">
+                        <div class="servicio-dropdown-content">
+                            <span class="service-label">ENERGÍA RENOVABLE</span>
+                            <p>Instalación de sistemas solares para residencias, comercios e industrias. Diseño, implementación y mantenimiento de proyectos de energía renovable con tecnología de última generación.</p>
+                            <div class="servicio-gallery">
+                                <div class="servicio-gallery-item" onclick="openImageModal('solar', 0)">
+                                    <img src="img/EnergiaSolarFotoVoltaica_00.jpeg" alt="Solar" onerror="this.src='https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                                <div class="servicio-gallery-item" onclick="openImageModal('solar', 1)">
+                                    <img src="img/EnergiaSolarFotoVoltaica_01.jpeg" alt="Solar" onerror="this.src='https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="servicio-dropdown fade-up">
+                    <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
+                        <div class="servicio-num">04</div>
+                        <div class="servicio-dropdown-title">Maquinaria Pesada</div>
+                        <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="servicio-dropdown-body">
+                        <div class="servicio-dropdown-content">
+                            <span class="service-label">EQUIPAMIENTO</span>
+                            <p>Flota de maquinaria pesada de alta capacidad para movimiento de tierra, excavación, pavimentación y construcción. Equipos de última tecnología para proyectos de cualquier escala.</p>
+                            <div class="servicio-gallery">
+                                <div class="servicio-gallery-item" onclick="openImageModal('maquinaria', 0)">
+                                    <img src="img/Construccion00.jpeg" alt="Maquinaria" onerror="this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                                 <div class="servicio-gallery-item" onclick="openImageModal('maquinaria', 0)">
+                                    <img src="img/EquiposTrituracion00.jpeg" alt="Maquinaria" onerror="this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="servicio-dropdown fade-up">
+                    <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
+                        <div class="servicio-num">05</div>
+                        <div class="servicio-dropdown-title">Desarrollo de Software y Sistemas Informáticos</div>
+                        <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="servicio-dropdown-body">
+                        <div class="servicio-dropdown-content">
+                            <span class="service-label">TECNOLOGÍA</span>
+                            <p>Diseñamos y desarrollamos software y sistemas informáticos personalizados, optimizando procesos y brindando soluciones tecnológicas innovadoras para potenciar tu negocio.</p>
+                            <div class="servicio-gallery">
+                                <div class="servicio-gallery-item" onclick="openImageModal('software', 0)">
+                                    <img src="img/software-1.jpg" alt="Software" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>                                                        
+                                <div class="servicio-gallery-item" onclick="openImageModal('software', 0)">
+                                    <img src="img/SolucionesAMedida03.png" alt="Software" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="servicio-dropdown fade-up">
+                    <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
+                        <div class="servicio-num">06</div>
+                        <div class="servicio-dropdown-title">Equipos de Seguridad Electrónica</div>
+                        <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="servicio-dropdown-body">
+                        <div class="servicio-dropdown-content">
+                            <span class="service-label">SEGURIDAD</span>
+                            <p>Instalación de equipos de videovigilancia y control de acceso con tecnología de vanguardia. Sistemas de seguridad integrales para empresas e instituciones.</p>
+                            <div class="servicio-gallery">
+                                <div class="servicio-gallery-item" onclick="openImageModal('seguridad', 0)">
+                                    <img src="img/Seg00.png" alt="Seguridad" onerror="this.src='https://images.unsplash.com/photo-1558002038-1055907df827?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>                            
+                                <div class="servicio-gallery-item" onclick="openImageModal('seguridad', 0)">
+                                    <img src="img/Seg03.png" alt="Seguridad" onerror="this.src='https://images.unsplash.com/photo-1558002038-1055907df827?w=400'">
+                                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL IMAGEN -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="image-modal-close" onclick="closeImageModal()">&times;</button>
+            <button class="image-modal-nav prev" onclick="navigateImage(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="image-modal-nav next" onclick="navigateImage(1)"><i class="fas fa-chevron-right"></i></button>
+            <img id="modalImage" src="" alt="Imagen del servicio">
+            <div class="image-modal-counter" id="modalCounter"></div>
+        </div>
+    </div>
+
+    <!-- PROYECTOS -->
+    <section class="proyectos" id="proyectos">
+        <div class="container">
+            <h2 class="section-title">Proyectos</h2>
+            <div class="proyectos-grid">
+                <div class="proyecto-card fade-up">
+                    <img src="img/InstAiresAcondHospCR_01.jpeg" alt="Instalación aires acondicionados integrales">
+                    <div class="proyecto-overlay">
+                        <h3>Instalación aires acondicionados integrales</h3>
+                        <p>Hospital Central San Cristóbal</p>
+                    </div>
+                </div>
+                <div class="proyecto-card fade-up">
+                    <img src="img/ProyecUrbConstCiudadEcoLaLampArtTachVen_03.jpeg" alt="Urbanismo y Construcción">
+                    <div class="proyecto-overlay">
+                        <h3>Urbanismo y construcción</h3>
+                        <p>Ciudad Ecologica la Lampara</p>
+                    </div>
+                </div>
+                <div class="proyecto-card fade-up">
+                    <img src="img/ProyectoCableNorte_00.jpeg" alt="Paneles energia solar">
+                    <div class="proyecto-overlay">
+                        <h3>Paneles energia solar</h3>
+                        <p>Cable Norte</p>
+                    </div>
+                </div>
+                <div class="proyecto-card fade-up">
+                    <img src="img/ProyecVialidad_01.jpeg" alt="Vialidad">
+                    <div class="proyecto-overlay">
+                        <h3>Vialidad</h3>
+                        <p>Vias urbanas y extraurbanas</p>
+                    </div>
+                </div>
+                <div class="proyecto-card fade-up">
+                    <img src="img/HidraulicaLaGrita_00.jpeg" alt="Hidraulica">
+                    <div class="proyecto-overlay">
+                        <h3>Hidraulica</h3>
+                        <p>Acueductos</p>
+                    </div>
+                </div>
+                <div class="proyecto-card fade-up">
+                    <img src="img/ProyecEscuelas_00.jpeg" alt="Torre Corporativa">
+                    <div class="proyecto-overlay">
+                        <h3>Infraestructura</h3>
+                        <p>Escuelas, plantas de llenado de Gas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECCIÓN PORTAFOLIO                         -->
+    <!-- ========================================== -->
+    <section id="portafolio" class="portafolio-section">
+        <div class="container">
+            <h2 class="section-title">Portafolio</h2>
+            <p class="section-subtitle">Calidad en cada detalle</p>
+            
+            <!-- Filtros -->
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="empresas">Empresas</button>
+                <button class="filter-btn" data-filter="educativas">Instituciones Educativas</button>
+                <button class="filter-btn" data-filter="hoteles">Hoteles</button>
+                <button class="filter-btn" data-filter="vial">Infraestructura Vial</button>
+                <button class="filter-btn" data-filter="solar">Sistemas Fotovoltaicos</button>
+                <button class="filter-btn" data-filter="otras">Otras Obras</button>
+            </div>
+            
+            <!-- Grid de Proyectos -->
+            <div class="portfolio-grid">
+                
+                <!-- Proyecto 1: Cable Norte -->
+                <div class="portfolio-item" data-category="empresas">
+                    <div class="portfolio-card" onclick="openModal('modalCableNorte')">
+                        <div class="portfolio-image">
+                            <img src="img/ProductosYServicios.png" alt="Cable Norte">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Empresas, Productos y Servicios</h3>
+                                    <p>Cable Norte</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 2: Colegio Los Pirineos -->
+                <div class="portfolio-item" data-category="educativas">
+                    <div class="portfolio-card" onclick="openModal('modalColegioPirineos')">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600" alt="Colegio Los Pirineos">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Instituciones Educativas</h3>
+                                    <p>Colegio Los Pirineos Don Bosco</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3: Hotel Eurobuilding -->
+                <div class="portfolio-item" data-category="hoteles">
+                    <div class="portfolio-card" onclick="openModal('modalHotelEurobuilding')">
+                        <div class="portfolio-image">
+                            <img src="img/TamaEurobuilding.jpg" alt="Hotel Eurobuilding">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Hoteles</h3>
+                                    <p>Tama Eurobuilding</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4: Infraestructura Vial -->
+                <div class="portfolio-item" data-category="vial">
+                    <div class="portfolio-card" onclick="openModal('modalInfraestructuraVial')">
+                        <div class="portfolio-image">
+                            <img src="img/InfraestructuraVial_04.jpeg" alt="Infraestructura Vial">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Infraestructura Vial</h3>
+                                    <p>Carreteras y vías</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 5: Sistemas Fotovoltaicos -->
+                <div class="portfolio-item" data-category="solar">
+                    <div class="portfolio-card" onclick="openModal('modalSistemasFotovoltaicos')">
+                        <div class="portfolio-image">
+                            <img src="img/SistemasFotovoltaicos_00.jpeg" alt="Sistemas Fotovoltaicos">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Sistemas Fotovoltaicos</h3>
+                                    <p>Energía solar</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- ========================================== -->
+                <!-- SECCIÓN PORTAFOLIO - AGREGAR PROYECTO OTRAS OBRAS -->
+                <!-- ========================================== -->
+
+                <!-- En el grid de portafolio, agregar este item: -->
+                <div class="portfolio-item" data-category="otras">
+                    <div class="portfolio-card" onclick="openModal('modalOtrasObras')">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Otras Obras">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Otras Obras</h3>
+                                    <p>Proyectos diversos</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+
+    <!-- ========================================== -->
+    <!-- MODAL: CABLE NORTE                         -->
+    <!-- ========================================== -->
+    <div id="modalCableNorte" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalCableNorte')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalCableNorte')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Cable Norte</h2>
+                <p>Instalación de Techos Solares en Estacionamiento</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselCableNorte">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Detalles del Proyecto</h3>
+                            <ol>
+                                <li><strong>Instalación de techos para estacionamiento</strong> con paneles solares diseñados para maximizar la captación de energía.</li>
+                                <li><strong>Potencia:</strong> Capacidad de generar 12 KVA de energía solar por hora.</li>
+                                <li><strong>Ubicación:</strong> Av. Libertador, San Cristóbal, estado Táchira.</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/CableNorte_00.png" alt="Cable Norte">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Especificaciones Técnicas</h3>
+                            <p>Estructura metálica galvanizada con paneles solares de alta eficiencia.</p>
+                            <ul>
+                                <li>12 paneles solares monocristalinos de 450W</li>
+                                <li>Inversor híbrido de 12 KVA</li>
+                                <li>Estructura de acero galvanizado en caliente</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoCableNorte_00.jpeg" alt="Cable Norte Instalación">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Resultados</h3>
+                            <p>El sistema genera energía limpia para el estacionamiento, reduciendo costos operativos y huella de carbono.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoCableNorte_01.jpeg" alt="Cable Norte Resultado">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselCableNorte', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselCableNorte', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselCableNorte', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselCableNorte', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselCableNorte', 2)"></span>
+                </div>
+            </div>
+            
+            <div class="modal-badges">
+                <span class="badge"> 12 KVA Potencia</span>
+                <span class="badge">🏗️ Estructura Metálica</span>
+                <span class="badge">☀️ Paneles Solares</span>
+                <span class="badge"> Estacionamiento Techado</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: COLEGIO LOS PIRINEOS                -->
+    <!-- ========================================== -->
+    <div id="modalColegioPirineos" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalColegioPirineos')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalColegioPirineos')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Colegio Los Pirineos Don Bosco</h2>
+                <p>Sistema de Energía Solar - Primera Etapa</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselColegioPirineos">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Sistema de Energía Solar (Primera Etapa de 12 KVA)</h3>
+                            <ol>
+                                <li><strong>Suministro e instalación</strong> de un sistema de energía solar, que incluye un cuarto de inversores y baterías de litio inteligentes.</li>
+                                <li><strong>Garantía de autonomía energética</strong> durante el día mediante el uso de paneles solares.</li>
+                                <li><strong>Provisión de energía en horarios nocturnos</strong> o durante días nublados, con una capacidad de suministro de hasta 5 horas, respaldada por las baterías de litio.</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ColegioLosPirineosDonBosco_00.png" alt="Colegio Pirineos">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Capacidad del Sistema</h3>
+                            <ul>
+                                <li>Capacidad instalada: 12 KVA</li>
+                                <li>Baterías de litio inteligentes</li>
+                                <li>Autonomía: 5 horas</li>
+                                <li>Paneles solares fotovoltaicos de alta eficiencia</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoColegioDonBosco_00.jpeg" alt="Paneles Solares">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Beneficios</h3>
+                            <p>El sistema permite al colegio operar con energía limpia, reduciendo costos y contribuyendo al medio ambiente.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoColegioDonBosco_01.jpeg" alt="Beneficios">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselColegioPirineos', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselColegioPirineos', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselColegioPirineos', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselColegioPirineos', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselColegioPirineos', 2)"></span>
+                </div>
+            </div>
+            
+            <div class="modal-badges">
+                <span class="badge"> Capacidad: 12 KVA</span>
+                <span class="badge">🔋 Baterías de Litio Inteligentes</span>
+                <span class="badge">⏱️ Autonomía: 5 horas</span>
+                <span class="badge">☀️ Paneles Solares Fotovoltaicos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: HOTEL EUROBUILDING (CORREGIDO)      -->
+    <!-- ========================================== -->
+    <div id="modalHotelEurobuilding" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalHotelEurobuilding')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalHotelEurobuilding')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Hotel Eurobuilding Tamá San Cristóbal</h2>
+                <p>Remodelación Suite Presidencial</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselHotelEurobuilding">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Detalles del Proyecto</h3>
+                            <ol>
+                                <li><strong>Deforestación y trámites de permisos:</strong> Tala de 156 árboles de gran altura en el área del bosque del hotel.</li>
+                                <li><strong>Siembra:</strong> Plantación de 10,000 plantas de limón de jardín para cercas perimetrales.</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/HotelEurobuildingElTama_00.png" alt="Hotel Eurobuilding">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Remodelación de Habitaciones</h3>
+                            <ol start="3">
+                                <li><strong>Remodelación de habitaciones y áreas comunes:</strong> Ampliación, frisos, mezcla, colocación de porcelanatos, terminación de baños y cerámicas en general desde el piso 1 al piso 9. Trabajos en 108 habitaciones y pasillos.</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoTamaEurobuilding_00.png" alt="Habitaciones">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Suite Presidencial</h3>
+                            <ol start="4">
+                                <li><strong>Remodelación de la Suite Presidencial:</strong> Ampliación en obra gris y acabados. Colocación de pisos de mármol y porcelanatos. Superficie de 500 m².</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoTamaEurobuilding_01.png" alt="Suite Presidencial">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Impermeabilización</h3>
+                            <ol start="5">
+                                <li><strong>Recuperación e impermeabilización:</strong> Trabajos en la placa del techo de todo el edificio de habitaciones del hotel.</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/ProyectoTamaEurobuilding_04.png" alt="Impermeabilización">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselHotelEurobuilding', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselHotelEurobuilding', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselHotelEurobuilding', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselHotelEurobuilding', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselHotelEurobuilding', 2)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselHotelEurobuilding', 3)"></span>
+                </div>
+            </div>
+            
+            <div class="modal-badges">
+                <span class="badge">🏨 108 Habitaciones</span>
+                <span class="badge">️ 9 Pisos</span>
+                <span class="badge">📐 500 m² Suite Presidencial</span>
+                <span class="badge">🌳 10,000 Plantas</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: INFRAESTRUCTURA VIAL                -->
+    <!-- ========================================== -->
+    <div id="modalInfraestructuraVial" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalInfraestructuraVial')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalInfraestructuraVial')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Infraestructura Vial</h2>
+                <p>Carreteras y vías urbanas y extraurbanas</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselInfraestructuraVial">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Construcción de Vías</h3>
+                            <p>Desarrollo de infraestructura vial para conectar comunidades y facilitar el transporte.</p>
+                            <ul>
+                                <li>Pavimentación de carreteras principales</li>
+                                <li>Construcción de aceras y brocales</li>
+                                <li>Sistemas de drenaje vial</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/InfraestructuraVial_01.jpeg" alt="Vialidad">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Vías Urbanas</h3>
+                            <p>Mejoramiento de vías dentro de áreas urbanas para facilitar la movilidad.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/InfraestructuraVial_02.jpeg" alt="Vías Urbanas">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Señalización</h3>
+                            <p>Instalación de señalización vial para seguridad de conductores y peatones.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/InfraestructuraVial_03.jpeg" alt="Señalización">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselInfraestructuraVial', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselInfraestructuraVial', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselInfraestructuraVial', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselInfraestructuraVial', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselInfraestructuraVial', 2)"></span>
+                </div>
+            </div>
+            
+            <div class="modal-badges">
+                <span class="badge">🛣️ Carreteras</span>
+                <span class="badge">🏙️ Vías Urbanas</span>
+                <span class="badge"> Puentes</span>
+                <span class="badge">🚧 Señalización</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: SISTEMAS FOTOVOLTAICOS              -->
+    <!-- ========================================== -->
+    <div id="modalSistemasFotovoltaicos" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalSistemasFotovoltaicos')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalSistemasFotovoltaicos')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Sistemas Fotovoltaicos</h2>
+                <p>Energía solar residencial e industrial</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselSistemasFotovoltaicos">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Instalación de Sistemas Solares</h3>
+                            <p>Diseño e instalación de sistemas fotovoltaicos para residencias, comercios e industrias.</p>
+                            <ul>
+                                <li>Paneles solares de alta eficiencia</li>
+                                <li>Inversores de última generación</li>
+                                <li>Sistemas de monitoreo remoto</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/SistemasFotovoltaicos_01.jpeg" alt="Fotovoltaico">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Proyectos Residenciales</h3>
+                            <p>Soluciones de energía solar para hogares con sistemas desde 3 KVA hasta 20 KVA.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/SistemasFotovoltaicos_02.jpeg" alt="Residencial">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Proyectos Industriales</h3>
+                            <p>Grandes instalaciones para empresas e industrias con sistemas desde 50 KVA hasta 500 KVA.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/SiastemasFotovoltaicos_03.jpeg" alt="Industrial">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Beneficios</h3>
+                            <ul>
+                                <li>Reducción de hasta 90% en factura eléctrica</li>
+                                <li>Energía limpia y renovable</li>
+                                <li>Retorno de inversión en 2-4 años</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/SistemasFotovoltaicos_06.jpeg" alt="Beneficios">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselSistemasFotovoltaicos', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselSistemasFotovoltaicos', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselSistemasFotovoltaicos', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselSistemasFotovoltaicos', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselSistemasFotovoltaicos', 2)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselSistemasFotovoltaicos', 3)"></span>
+                </div>
+            </div>
+            
+            <div class="modal-badges">
+                <span class="badge">☀️ Energía Limpia</span>
+                <span class="badge">💰 Ahorro 70%</span>
+                <span class="badge">🏠 Residencial</span>
+                <span class="badge"> Industrial</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: OTRAS OBRAS                         -->
+    <!-- ========================================== -->
+    <div id="modalOtrasObras" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalOtrasObras')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalOtrasObras')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Otras Obras</h2>
+                <p>Proyectos diversos realizados por Inpelka C.A.</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselOtrasObras">
+                <!-- Slide 1: Obras de Climatización -->
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Obras de Climatización</h3>
+                            <ol>
+                                <li><strong>Rehabilitación del sistema de climatización</strong> en áreas priorizadas del Hospital Central de San Cristóbal, fase II. <span class="year-badge">2021</span> - cliente: C.I.C.R</li>
+                                <li><strong>Rehabilitación del sistema de climatización</strong> del área de emergencia de adultos y quirófano del Hospital Central de San Cristóbal. <span class="year-badge">2020</span> - cliente: C.I.C.R</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/OtrasObras_00.jpeg" alt="Climatización">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Obras Hidráulicas -->
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Obras Hidráulicas</h3>
+                            <ol>
+                                <li><strong>Rehabilitación del Sistema de bombeo</strong> del hospital José Antonio Páez de Guasdualito, municipio Páez, estado Apure. <span class="year-badge">2021</span> - cliente: C.I.C.R</li>
+                                <li><strong>Mantenimiento de tanques de almacenamiento de agua</strong> en el hospital Central de San Cristóbal. <span class="year-badge">2019</span> - cliente: C.I.C.R</li>
+                                <li><strong>Mantenimiento en la red de distribución de agua</strong> del hospital Nuestra Señora del Carmen, Machiques, estado Zulia. <span class="year-badge">2023</span></li>
+                                <li><strong>Servicio de transporte y suministro de agua</strong> con cisternas para el Terminal de San Antonio del Táchira. <span class="year-badge">2021</span> - cliente: C.I.C.R</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/OtrasObras_03.jpeg" alt="Obras Hidráulicas">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: Construcción y Equipamiento -->
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Construcción y Equipamiento</h3>
+                            <ol>
+                                <li><strong>Construcción y dotación de aulas</strong> para la escuela estadal número 38. El Alto sector el Alto municipio Simón Rodríguez. <span class="year-badge">2018</span> - cliente: INTEDUCA</li>
+                                <li><strong>Construcción de 4 cuartos fríos</strong> para la conservación en el frigorífico industrial Ayari. <span class="year-badge">2019</span> - cliente: FRIACA</li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/OtrasObras_02.jpeg" alt="Construcción">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Energía Solar -->
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Proyectos de Energía Solar</h3>
+                            <ol>
+                                <li><strong>Proyecto de Energía Solar de 12 KVA</strong> Colegio Don Bosco. <span class="year-badge">2024</span></li>
+                                <li><strong>Suministro e instalación de 27 KVA de energía solar</strong> equipos SRNE, Colegio Coframa de Cordero. <span class="year-badge">2024</span></li>
+                                <li><strong>Instalación de 1000 KVA de energía solar</strong> en Ciudad Ecológica La Lámpara. <span class="year-badge">2024</span></li>
+                            </ol>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/SistemasFotovoltaicos_05.jpeg" alt="Energía Solar">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselOtrasObras', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselOtrasObras', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselOtrasObras', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselOtrasObras', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselOtrasObras', 2)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselOtrasObras', 3)"></span>
+                </div>
+            </div>
+            
+            <div class="modal-badges">
+                <span class="badge">🏥 Hospitales</span>
+                <span class="badge">🏫 Escuelas</span>
+                <span class="badge">️ Cuartos Fríos</span>
+                <span class="badge">☀️ Energía Solar</span>
+                <span class="badge">💧 Hidráulica</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Sección Empresas Aliadas Modificada -->
+    <section id="aliadas" class="aliadas-section">
+        <div class="container">
+            <h2 class="section-title">Empresas Aliadas</h2>
+            <p class="section-subtitle">Juntos construimos el futuro</p>
+            
+            <div class="aliadas-slider">
+                <div class="aliadas-slider-container" id="aliadasSlider">
+                    <!-- Slide 1 -->
+                    <div class="aliadas-slide">
+                        <div class="aliado-card">
+                            <div class="aliado-logo eco-home">
+                                <img src="img/LogoEcoHomeHolding.png" alt="Eco Home Holding">
+                            </div>
+                            <h3>Eco Home Holding</h3>
+                            <p>Construcciones sostenibles</p>
+                        </div>
+                        <div class="aliado-card">
+                            <div class="aliado-logo">
+                                <img src="img/LogoMeta.png" alt="META">
+                            </div>
+                            <h3>META</h3>
+                            <p>Maquinaria pesada</p>
+                        </div>
+                        <div class="aliado-card">
+                            <div class="aliado-logo">
+                                <img src="img/LogoLaLamparaCiudadEcologica.png" alt="La Lámpara">
+                            </div>
+                            <h3>La Lámpara</h3>
+                            <p>Ciudad Ecológica</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="aliadas-slide">
+                        <div class="aliado-card">
+                            <div class="aliado-logo sei-energy">
+                                <img src="img/LogoSIEEnergy.png" alt="SEI Energy">
+                            </div>
+                            <h3>SEI Energy</h3>
+                            <p>Energía solar</p>
+                        </div>
+                        <div class="aliado-card">
+                            <div class="aliado-logo sofitasa">
+                                <img src="img/BancoSofitasa.png" alt="SOFITASA">
+                            </div>
+                            <h3>SOFITASA</h3>
+                            <p>Banco Universal</p>
+                        </div>
+                        <div class="aliado-card">
+                            <div class="aliado-logo">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400" alt="Constructora ABC">
+                            </div>
+                            <h3>Constructora ABC</h3>
+                            <p>Desarrollo inmobiliario</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="aliadas-slide">
+                        <div class="aliado-card">
+                            <div class="aliado-logo">
+                                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400" alt="TechBuild">
+                            </div>
+                            <h3>TechBuild</h3>
+                            <p>Tecnología constructiva</p>
+                        </div>
+                        <div class="aliado-card">
+                            <div class="aliado-logo">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400" alt="Infraestructuras CA">
+                            </div>
+                            <h3>Infraestructuras CA</h3>
+                            <p>Obras viales</p>
+                        </div>
+                        <div class="aliado-card">
+                            <div class="aliado-logo">
+                                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400" alt="Green Energy">
+                            </div>
+                            <h3>Green Energy</h3>
+                            <p>Energías renovables</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles del slider -->
+                <button class="slider-control prev" id="prevBtn">&#10094;</button>
+                <button class="slider-control next" id="nextBtn">&#10095;</button>
+                
+                <!-- Indicadores -->
+                <div class="slider-indicators" id="indicators"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <div class="contacto-item fade-up">
+                        <div class="contacto-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contacto-text"><h3>Teléfonos</h3><p><a href="tel:02763431155">0276-343.11.55</a> / <a href="tel:04247329980">0424-732.99.80</a></p></div>
+                    </div>
+                    <div class="contacto-item fade-up">
+                        <div class="contacto-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contacto-text"><h3>Correo</h3><p><a href="mailto:Inpelka2020@gmail.com">Inpelka2020@gmail.com</a></p></div>
+                    </div>
+                    <div class="contacto-item fade-up">
+                        <div class="contacto-icon"><i class="fab fa-instagram"></i></div>
+                        <div class="contacto-text"><h3>Instagram</h3><p><a href="https://instagram.com/Inversiones_Inpelka" target="_blank">@Inversiones_Inpelka</a></p></div>
+                    </div>
+                    <div class="contacto-item fade-up">
+                        <div class="contacto-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contacto-text"><h3>Dirección</h3><p>Av Libertador, Unicentro Leomar, piso 2, of. 5, San Cristóbal, Táchira</p></div>
+                    </div>                    
+                </div>
+                <div class="contacto-form fade-up">
+                    <!-- Formulario de Contacto -->
+            <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    <span class="error-message" id="error-nombre"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    <input type="email" id="correo" name="correo" placeholder="tu@email.com" required>
+                    <span class="error-message" id="error-correo"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="0000-000.00.00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="servicio">Servicio</label>
+                    <select id="servicio" name="servicio" required>
+                        <option value="">Selecciona...</option>
+                        <option value="Obras Civiles">Obras Civiles</option>
+                        <option value="Hidráulica">Hidráulica</option>
+                        <option value="Energía Solar">Energía Solar</option>
+                        <option value="Maquinaria">Maquinaria</option>
+                        <option value="Software">Software</option>
+                        <option value="Seguridad">Seguridad</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                    <span class="error-message" id="error-servicio"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos..." rows="5" required></textarea>
+                    <span class="error-message" id="error-mensaje"></span>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-check"></i> ¡Enviar!
+                </button>
+                
+                <!-- Contenedor para mensajes generales -->
+                <div id="formMessage" class="form-message" style="display:none;"></div>
+            </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Inversiones Inpelka C.A.</h3>
+                <p>Más que construcciones, soluciones. Desde 2002.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/Inversiones_Inpelka" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/Inpelka" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://facebook.com/Inpelka" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/Inpelka" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://linkedin.com/company/inpelka" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <p><a href="#servicios">Obras Civiles</a></p>
+                <p><a href="#servicios">Hidráulica</a></p>
+                <p><a href="#servicios">Energía Solar</a></p>
+                <p><a href="#servicios">Maquinaria</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces</h3>
+                <p><a href="#home">Inicio</a></p>
+                <p><a href="#nosotros">Nosotros</a></p>
+                <p><a href="#proyectos">Proyectos</a></p>
+                <p><a href="#contacto">Contacto</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Horario</h3>
+                <p>Lunes a Viernes</p>
+                <p>8:00 AM - 5:00 PM</p>
+                <p>San Cristóbal, Táchira</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Inversiones Inpelka 2026 © Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/584247329980?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20servicios" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Contáctanos por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const serviceImages = {
+            'obras-civiles': [
+                { src: 'img/ServObrasCivilesIntegrales_03.jpeg', fallback: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200' },
+                { src: 'img/ServObrasCivilesIntegrales_00.jpeg', fallback: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200' }
+            ],
+            'hidraulica': [
+                { src: 'img/HidraulicaLaGrita_00.jpeg', fallback: 'https://images.unsplash.com/photo-1590644365607-1c5a0e1e030a?w=1200' },
+                { src: 'img/HidraulicaLaGrita_01.jpeg', fallback: 'https://images.unsplash.com/photo-1590644365607-1c5a0e1e030a?w=1200' }
+            ],
+            'solar': [
+                { src: 'img/EnergiaSolarFotoVoltaica_00.jpeg', fallback: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200' },
+                { src: 'img/EnergiaSolarFotoVoltaica_01.jpeg', fallback: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=1200' }                
+            ],
+            'maquinaria': [
+                { src: 'img/Construccion00.jpeg', fallback: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200' },
+                { src: 'img/EquiposTrituracion00.jpeg', fallback: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200' }
+            ],
+            'software': [
+                { src: 'img/software-1.jpg', fallback: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200' },
+                { src: 'img/SolucionesAMedida03.png', fallback: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200' }
+            ],
+            'seguridad': [
+                { src: 'img/Seg00.png', fallback: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=1200' },
+                { src: 'img/Seg03.png', fallback: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=1200' }
+            ]
+        };
+
+        let currentService = '';
+        let currentImageIndex = 0;
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        function toggleDropdown(header) {
+            const dropdown = header.parentElement;
+            const isActive = dropdown.classList.contains('active');
+            document.querySelectorAll('.servicio-dropdown').forEach(d => d.classList.remove('active'));
+            if (!isActive) dropdown.classList.add('active');
+        }
+
+        function openImageModal(service, index) {
+            const images = serviceImages[service];
+            if (!images || !images[index]) return;
+
+            currentService = service;
+            currentImageIndex = index;
+
+            const img = images[index];
+            const modalImg = document.getElementById('modalImage');
+            
+            modalImg.src = img.src;
+            modalImg.onerror = () => { modalImg.src = img.fallback; };
+            
+            document.getElementById('modalCounter').textContent = `${index + 1} / ${images.length}`;
+            
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateImage(direction) {
+            const images = serviceImages[currentService];
+            if (!images) return;
+
+            currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+            const img = images[currentImageIndex];
+            
+            const modalImg = document.getElementById('modalImage');
+            modalImg.style.opacity = '0';
+            
+            setTimeout(() => {
+                modalImg.src = img.src;
+                modalImg.onerror = () => { modalImg.src = img.fallback; };
+                modalImg.style.opacity = '1';
+            }, 200);
+
+            document.getElementById('modalCounter').textContent = `${currentImageIndex + 1} / ${images.length}`;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('imageModal');
+            if (!modal.classList.contains('show')) return;
+            
+            if (e.key === 'Escape') closeImageModal();
+            if (e.key === 'ArrowLeft') navigateImage(-1);
+            if (e.key === 'ArrowRight') navigateImage(1);
+        });
+
+        document.getElementById('imageModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('imageModal')) closeImageModal();
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-submit');
+            btn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+            btn.style.background = 'var(--verde)';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar';
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) window.scrollTo({ top: target.offsetTop - 75, behavior: 'smooth' });
+            });
+        });
+    </script>
+    
+    <!-- Script para enviar el formulario sin recargar -->
+    <script>       
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const messageDiv = document.getElementById('formMessage');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Limpiar errores anteriores
+            clearErrors();
+            
+            // Validar campos
+            let isValid = true;
+            
+            const nombre = document.getElementById('nombre').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+            const servicio = document.getElementById('servicio').value;
+            const mensaje = document.getElementById('mensaje').value.trim();
+            
+            // Validar Nombre
+            if (!nombre) {
+                showError('nombre', 'El nombre es obligatorio');
+                isValid = false;
+            } else if (nombre.length < 3) {
+                showError('nombre', 'El nombre debe tener al menos 3 caracteres');
+                isValid = false;
+            }
+            
+            // Validar Correo
+            if (!correo) {
+                showError('correo', 'El correo es obligatorio');
+                isValid = false;
+            } else if (!isValidEmail(correo)) {
+                showError('correo', 'Ingresa un correo válido (ej: usuario@email.com)');
+                isValid = false;
+            }
+            
+            // Validar Servicio
+            if (!servicio) {
+                showError('servicio', 'Selecciona un servicio');
+                isValid = false;
+            }
+            
+            // Validar Mensaje
+            if (!mensaje) {
+                showError('mensaje', 'El mensaje es obligatorio');
+                isValid = false;
+            } else if (mensaje.length < 10) {
+                showError('mensaje', 'El mensaje debe tener al menos 10 caracteres');
+                isValid = false;
+            }
+            
+            // Si hay errores, no enviar
+            if (!isValid) {
+                showMessage('⚠️ Por favor corrige los campos marcados.', 'error');
+                return;
+            }
+            
+            // Si todo está bien, enviar
+            const btn = form.querySelector('.btn-submit');
+            const originalText = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            
+            // Crear FormData
+            const formData = new FormData(form);
+            
+            // Enviar a PHP
+            fetch('enviar.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                showMessage(data.message, data.success ? 'success' : 'error');
+                if (data.success) {
+                    form.reset();
+                    clearErrors();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('❌ Error de conexión. Verifica tu internet e intenta nuevamente.', 'error');
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                setTimeout(() => { 
+                    if (messageDiv) messageDiv.style.display = 'none'; 
+                }, 5000);
+            });
+        });
+    }
+    
+    // Función para mostrar error en campo
+    function showError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const formGroup = field.closest('.form-group');
+        
+        formGroup.classList.add('error');
+        formGroup.classList.remove('success');
+        
+        // Actualizar mensaje de error
+        const errorSpan = document.getElementById('error-' + fieldId);
+        if (errorSpan) {
+            errorSpan.textContent = message;
+        }
+    }
+    
+    // Función para limpiar errores
+    function clearErrors() {
+        const errorGroups = document.querySelectorAll('.form-group.error');
+        errorGroups.forEach(group => {
+            group.classList.remove('error');
+            const errorSpan = group.querySelector('.error-message');
+            if (errorSpan) errorSpan.textContent = '';
+        });
+    }
+    
+    // Función para mostrar mensaje general
+    function showMessage(text, type) {
+        if (messageDiv) {
+            messageDiv.textContent = text;
+            messageDiv.className = 'form-message ' + type;
+            messageDiv.style.display = 'block';
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+    
+    // Validar email con regex
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    // Validación en tiempo real al escribir
+    const inputs = form?.querySelectorAll('input, select, textarea');
+    if (inputs) {
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim()) {
+                    const formGroup = this.closest('.form-group');
+                    const errorSpan = formGroup.querySelector('.error-message');
+                    if (formGroup.classList.contains('error')) {
+                        formGroup.classList.remove('error');
+                        formGroup.classList.add('success');
+                        if (errorSpan) errorSpan.textContent = '';
+                    }
+                }
+            });
+        });
+    }
+    });
+    </script>
+
+
+    <!-- JavaScript para el slider automático -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.getElementById('aliadasSlider');
+        const slides = document.querySelectorAll('.aliadas-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+        
+        // Crear indicadores
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+        
+        const indicators = document.querySelectorAll('.indicator');
+        
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            indicators.forEach((ind, index) => {
+                ind.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000); // 5 segundos
+        }
+        
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+        
+        // Pausar al pasar el mouse
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+        
+        // Iniciar slider automático
+        startAutoSlide();
+    });
+    </script>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT PARA MODALES Y CARRUSELES       -->
+    <!-- ========================================== -->
+    <script>
+    // Función para abrir modal
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    // Función para cerrar modal
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.custom-modal.active');
+            if (activeModal) {
+                activeModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+
+    // Función para mover carrusel
+    function moveCarousel(carouselId, direction) {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const indicators = carousel.querySelectorAll('.indicator');
+        let currentIndex = 0;
+        
+        slides.forEach((slide, index) => {
+            if (slide.classList.contains('active')) {
+                currentIndex = index;
+            }
+        });
+        
+        let newIndex = currentIndex + direction;
+        
+        if (newIndex < 0) newIndex = slides.length - 1;
+        if (newIndex >= slides.length) newIndex = 0;
+        
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        slides[newIndex].classList.add('active');
+        indicators[newIndex].classList.add('active');
+    }
+
+    // Función para ir a slide específico
+    function goToSlide(carouselId, index) {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const indicators = carousel.querySelectorAll('.indicator');
+        
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+    }
+
+    // Filtros de portafolio
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>
