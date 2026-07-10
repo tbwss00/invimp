@@ -1519,7 +1519,7 @@
                 <div class="servicio-dropdown fade-up">
                     <div class="servicio-dropdown-header" onclick="toggleDropdown(this)">
                         <div class="servicio-num">05</div>
-                        <div class="servicio-dropdown-title">Desarrollo de Software y Sistemas Informáticos</div>
+                        <div class="servicio-dropdown-title">Desarrollo de Software, Tecnologia de la Información y Sistemas Informáticos</div>
                         <div class="servicio-dropdown-arrow"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="servicio-dropdown-body">
@@ -1532,7 +1532,7 @@
                                     <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                                 </div>                                                        
                                 <div class="servicio-gallery-item" onclick="openImageModal('software', 0)">
-                                    <img src="img/SolucionesAMedida03.png" alt="Software" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500'">
+                                    <img src="img/ConsultoriaTecnologicaTI.jpg" alt="Software" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500'">
                                     <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                                 </div>
                             </div>                            
@@ -1646,6 +1646,7 @@
                 <button class="filter-btn" data-filter="vial">Infraestructura Vial</button>
                 <button class="filter-btn" data-filter="solar">Sistemas Fotovoltaicos</button>
                 <button class="filter-btn" data-filter="otras">Otras Obras</button>
+                <button class="filter-btn" data-filter="grupo-san-simon">Grupo San Simón</button>
             </div>
             
             <!-- Grid de Proyectos -->
@@ -1750,6 +1751,23 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Proyecto 7: Industria Grupo San Simón -->
+                <div class="portfolio-item" data-category="grupo-san-simon">
+                    <div class="portfolio-card" onclick="openModal('modalGrupoSanSimon')">
+                        <div class="portfolio-image">
+                            <img src="img/GrupoSanSimon11.jpeg" alt="Grupo San Simón">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <h3>Grupo San Simón</h3>
+                                    <p>Industrias</p>
+                                    <span class="view-project">Ver Proyecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+
 
             </div>
         </div>
@@ -2261,6 +2279,103 @@
     </div>
 
 
+    <!-- ========================================== -->
+    <!-- MODAL: Grupo San Simón              -->
+    <!-- ========================================== -->
+    <div id="modalGrupoSanSimon" class="custom-modal">
+        <div class="custom-modal-overlay" onclick="closeModal('modalGrupoSanSimon')"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeModal('modalGrupoSanSimon')">✕</button>
+            
+            <div class="modal-project-header">
+                <h2>Grupo San Simón</h2>
+                <p>Energía solar para industrias de Venezuela</p>
+            </div>
+            
+            <div class="modal-carousel" id="carouselGrupoSanSimon">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Instalación de Paneles Solares Grupo San Simón</h3>
+                            <p>Diseño e instalación de paneles solares para Grupo San Simón.</p>
+                            <ul>
+                                <li>Paneles solares de alta eficiencia</li>
+                                <li>Inversores de última generación</li>
+                                <li>Sistemas de monitoreo remoto</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/GrupoSanSimon02.jpeg" alt="Industria">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Capacidad de Energia</h3>
+                            <p>Soluciones de energía solar para industrias en Venezuela.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/GrupoSanSimon05.jpeg" alt="IndustriaLactea">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Industria de Produccion de Leche</h3>
+                            <p>Grandes instalaciones para empresas e industrias con sistemas alta capacidad.</p>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/GrupoSanSimon07.jpeg" alt="Industrial">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <div class="carousel-text">
+                            <h3>Beneficios</h3>
+                            <ul>
+                                <li>Reducción de hasta 90% en factura eléctrica</li>
+                                <li>Energía limpia y renovable</li>
+                                <li>Retorno de inversión en 2-4 años</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-image">
+                            <img src="img/GrupoSanSimon10.jpeg" alt="Beneficios">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="moveCarousel('carouselGrupoSanSimon', -1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel('carouselGrupoSanSimon', 1)">❯</button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="goToSlide('carouselGrupoSanSimon', 0)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselGrupoSanSimon', 1)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselGrupoSanSimon', 2)"></span>
+                    <span class="indicator" onclick="goToSlide('carouselGrupoSanSimon', 3)"></span>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem;" align="center" class="carousel-text">Video del Proyecto</h3>
+                    <div class="video-container" align="center">
+                        <video controls poster="grupo-san-simon-video-poster.jpg">
+                            <source src="img/GrupoSanSimonVideo00.mp4" type="video/mp4">
+                            <source src="grupo-san-simon-instalacion.webm" type="video/webm">
+                            Tu navegador no soporta la reproducción de video. Por favor, descarga el video para verlo.
+                        </video>
+                    </div>
+            
+            <div class="modal-badges">
+                <span class="badge">☀️ Energía Limpia</span>
+                <span class="badge">💰 Ahorro 70%</span>
+                <span class="badge"> Alta capacidad</span>
+                <span class="badge"> Industrial</span>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Sección Empresas Aliadas Modificada -->
     <section id="aliadas" class="aliadas-section">
@@ -2502,7 +2617,7 @@
             ],
             'software': [
                 { src: 'img/software-1.jpg', fallback: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200' },
-                { src: 'img/SolucionesAMedida03.png', fallback: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200' }
+                { src: 'img/ConsultoriaTecnologicaTI.jpg', fallback: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200' }
             ],
             'seguridad': [
                 { src: 'img/Seg00.png', fallback: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=1200' },
